@@ -14,6 +14,13 @@ public class Sudoku {
         Sudoku sol = new Sudoku(board);
 
 
+        //Ir a la primera casilla vacía
+
+        //Poner un número y resolver ese nuevo por este método
+
+        //Si falla incrementar uno el valor puesto y volver a resolver
+
+
 
 
         return this;
@@ -41,17 +48,25 @@ public class Sudoku {
         int celda = this.board[fil][col];
 
         //Comprobar la fila
-        for(int i = 0; i < tam; i++){
-            if(i != col && this.board[fil][i] == celda){
+        for(int i = 0; i < tam; i++)
+            if(i != col && this.board[fil][i] == celda)
+                return false;
 
-            }
-        }
         //Comprobar la columna
-
+        for(int i = 0; i < tam; i++)
+            if(i != fil && this.board[i][col] == celda)
+                return false;
 
         //Comprobar la subdivisión
-        
-        return (this.comprobarFila(fil) && comprobarColumna(col) &&comprobarSubdivision(fil, col));
+        int filInicioSubdivison = (fil/3)*3;
+        int colInicioSubdivison = (col/3)*3;
+
+        for(int i = 0; i < 3; i++)
+            for(int j = 0; j < 3; j++)
+                if((i + filInicioSubdivison) != fil && (j + colInicioSubdivison) != col && this.board[filInicioSubdivison+i][colInicioSubdivison+j] == celda)
+                    return false;
+
+        return true;
     }
 
     @Override
