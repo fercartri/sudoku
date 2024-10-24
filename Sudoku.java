@@ -1,15 +1,24 @@
 public class Sudoku {
 
-    private final int tam = 9;
+    private final int TAM = 9;
     private int[][] board;
 
+    /**
+     * Crea un nuevo objeto Sudoku
+     * @param board la matriz de casillas iniciales. Aquellas vacías deber tener un 0
+     * @throws IllegalArgumentException si la dimensión no es de 9x9
+     */
     public Sudoku(int[][] board) {
-        if(board.length != tam || board[0].length != tam)
+        if(board.length != TAM || board[0].length != TAM)
             throw new IllegalArgumentException();
 
         this.board = board;
     }
 
+    /**
+     * Soluciona el Sudoku
+     * @return un Sudoku completado
+     */
     public Sudoku solucionar(){
         Sudoku sol = new Sudoku(board);
 
@@ -26,20 +35,21 @@ public class Sudoku {
         return this;
     }
 
-    public boolean completado(Sudoku s){
-        for(int i = 0; i < tam; i++){
-            for(int j = 0; j < tam; j++){
-                if(s.board[i][j] == 0){
+    /**
+     * Comprueba si el Sudoku está completo
+     * @return true si todas las celdas tienen un valor (1-9) y false en caso contrario
+     */
+    public boolean completado(){
+        for(int i = 0; i < TAM; i++)
+            for(int j = 0; j < TAM; j++)
+                if(this.board[i][j] == 0)
                     return false;
-                }
-            }
-        }
 
         return true;
     }
 
     /**
-     * Comprueba si una celda es posible dada la situación del sudoku
+     * Comprueba si un valor para cierta celda dada es posible con la situación del sudoku
      * @param fil la fila de la celda a comprobar
      * @param col la columna de la celda a comprobar
      * @return true si la celda es posible y false en caso contrario
@@ -48,12 +58,12 @@ public class Sudoku {
         int celda = this.board[fil][col];
 
         //Comprobar la fila
-        for(int i = 0; i < tam; i++)
+        for(int i = 0; i < TAM; i++)
             if(i != col && this.board[fil][i] == celda)
                 return false;
 
         //Comprobar la columna
-        for(int i = 0; i < tam; i++)
+        for(int i = 0; i < TAM; i++)
             if(i != fil && this.board[i][col] == celda)
                 return false;
 
