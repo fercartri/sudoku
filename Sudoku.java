@@ -4,16 +4,14 @@ public class Sudoku {
     private int[][] board;
 
     public Sudoku(int[][] board) {
-        if(board.length != tam || board[0].length != tam){
+        if(board.length != tam || board[0].length != tam)
             throw new IllegalArgumentException();
-        }
 
         this.board = board;
     }
 
-
     public Sudoku solucionar(){
-        return null;
+        return this;
     }
 
     @Override
@@ -39,7 +37,7 @@ public class Sudoku {
 
 
 
-    
+
     public static void main(String[] args) {
         int[][] exampleBoard = {
             {5, 3, 0, 0, 7, 0, 0, 0, 0},
@@ -55,7 +53,6 @@ public class Sudoku {
 
         Sudoku sudoku = new Sudoku(exampleBoard);
         System.out.println(sudoku);
+        System.out.println(sudoku.solucionar().toString());
     }
-
-
 }
