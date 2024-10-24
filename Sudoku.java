@@ -11,7 +11,47 @@ public class Sudoku {
     }
 
     public Sudoku solucionar(){
+        Sudoku sol = new Sudoku(board);
+
+
+
+
         return this;
+    }
+
+    public boolean completado(Sudoku s){
+        for(int i = 0; i < tam; i++){
+            for(int j = 0; j < tam; j++){
+                if(s.board[i][j] == 0){
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * Comprueba si una celda es posible dada la situación del sudoku
+     * @param fil la fila de la celda a comprobar
+     * @param col la columna de la celda a comprobar
+     * @return  true si la celda es posible y false en caso contrario
+     */
+    public boolean comprobarCelda(int fil, int col){
+        int celda = this.board[fil][col];
+
+        //Comprobar la fila
+        for(int i = 0; i < tam; i++){
+            if(i != col && this.board[fil][i] == celda){
+
+            }
+        }
+        //Comprobar la columna
+
+
+        //Comprobar la subdivisión
+        
+        return (this.comprobarFila(fil) && comprobarColumna(col) &&comprobarSubdivision(fil, col));
     }
 
     @Override
