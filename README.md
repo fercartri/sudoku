@@ -8,6 +8,7 @@ Los sudokus son unos rompecabezas matemáticos de origen japonés (1986) que se 
 EL objetivo es rellenar una cuadrícula de 9x9 celdas (parcialmente rellenada al principio) divididas en subcuadrículas de 3x3 con números del 1 al 9. Las condiciones para rellenarlo y resolverlo es que no se puede repetir cifra en la misma fila, columna y subcuadrícula.
 
 ## Ejemplo resuelto
+<p>
  --------- --------- --------- 
 | 5  3    |    7    |         |
 | 6       | 1  9  5 |         |
@@ -37,3 +38,4 @@ EL objetivo es rellenar una cuadrícula de 9x9 celdas (parcialmente rellenada al
 | 2  8  7 | 4  1  9 | 6  3  5 |
 | 3  4  5 | 2  8  6 | 1  7  9 |
  --------- --------- --------- 
+</p>
