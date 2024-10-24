@@ -3,6 +3,18 @@ public class Sudoku {
     private final int TAM = 9;
     private int[][] board;
 
+    private int[][] vacio = {
+        {0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0}
+    };
+
     /**
      * Crea un nuevo objeto Sudoku
      * @param board la matriz de casillas iniciales. Aquellas vacías deber tener un 0
@@ -22,17 +34,25 @@ public class Sudoku {
     public Sudoku solucionar(){
         Sudoku sol = new Sudoku(board);
 
+        for(int i = 0; i < TAM; i++){
+            for(int j = 0; j < TAM; j++){
+                if(sol.board[i][j] == 0){  //Se avanza hasta el primer 0
+                    for(int k = 0; k < 9; k++){
+                        sol.board[i][j] = k;
+                        if(sol.comprobarCelda(i, j)){
+                            if(sol.completado()){
+                                return sol;
+                            }
+                            else{
+                                sol.solucionar();
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
-        //Ir a la primera casilla vacía
-
-        //Poner un número y resolver ese nuevo por este método
-
-        //Si falla incrementar uno el valor puesto y volver a resolver
-
-
-
-
-        return this;
+        return new Sudoku(vacio);
     }
 
     /**
