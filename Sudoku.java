@@ -42,7 +42,7 @@ public class Sudoku {
      * Comprueba si una celda es posible dada la situación del sudoku
      * @param fil la fila de la celda a comprobar
      * @param col la columna de la celda a comprobar
-     * @return  true si la celda es posible y false en caso contrario
+     * @return true si la celda es posible y false en caso contrario
      */
     public boolean comprobarCelda(int fil, int col){
         int celda = this.board[fil][col];
