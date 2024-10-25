@@ -37,22 +37,30 @@ public class Sudoku {
         for(int i = 0; i < TAM; i++){
             for(int j = 0; j < TAM; j++){
                 if(sol.board[i][j] == 0){  //Se avanza hasta el primer 0
-                    for(int k = 0; k < 9; k++){
+                    for(int k = 1; k <= 9; k++){
                         sol.board[i][j] = k;
                         if(sol.comprobarCelda(i, j)){
                             if(sol.completado()){
                                 return sol;
                             }
                             else{
-                                sol.solucionar();
+                                Sudoku resultado = sol.solucionar();
+
+                                if(resultado != null){
+                                    return resultado;
+                                }
                             }
                         }
+
+                        sol.board[i][j] = 0;    //Resetear la celda
                     }
+
+                    return null;    //Para que el backtracking no continue por aquí
                 }
             }
         }
 
-        return new Sudoku(vacio);
+        return sol;
     }
 
     /**
@@ -93,8 +101,9 @@ public class Sudoku {
 
         for(int i = 0; i < 3; i++)
             for(int j = 0; j < 3; j++)
-                if((i + filInicioSubdivison) != fil && (j + colInicioSubdivison) != col && this.board[filInicioSubdivison+i][colInicioSubdivison+j] == celda)
+                if ((i + filInicioSubdivison != fil || j + colInicioSubdivison != col) && this.board[filInicioSubdivison + i][colInicioSubdivison + j] == celda)
                     return false;
+        
 
         return true;
     }
@@ -124,19 +133,19 @@ public class Sudoku {
 
 
     public static void main(String[] args) {
-        int[][] exampleBoard = {
-            {5, 3, 0, 0, 7, 0, 0, 0, 0},
-            {6, 0, 0, 1, 9, 5, 0, 0, 0},
-            {0, 9, 8, 0, 0, 0, 0, 6, 0},
-            {8, 0, 0, 0, 6, 0, 0, 0, 3},
-            {4, 0, 0, 8, 0, 3, 0, 0, 1},
-            {7, 0, 0, 0, 2, 0, 0, 0, 6},
-            {0, 6, 0, 0, 0, 0, 2, 8, 0},
-            {0, 0, 0, 4, 1, 9, 0, 0, 5},
-            {0, 0, 0, 0, 8, 0, 0, 7, 9}
+        int[][] ejemplo = {
+            {2, 0, 0, 1, 0, 0, 3, 0, 8},
+            {0, 0, 7, 3, 4, 0, 0, 0, 1},
+            {0, 0, 0, 0, 6, 0, 0, 0, 0},
+            {3, 4, 5, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 8, 0, 1, 0, 0, 0},
+            {8, 0, 0, 0, 7, 3, 0, 0, 0},
+            {0, 0, 0, 0, 0, 5, 0, 0, 3},
+            {0, 6, 2, 0, 3, 0, 0, 5, 0},
+            {0, 0, 8, 0, 0, 0, 4, 0, 0}
         };
 
-        Sudoku sudoku = new Sudoku(exampleBoard);
+        Sudoku sudoku = new Sudoku(ejemplo);
         System.out.println(sudoku);
         System.out.println(sudoku.solucionar().toString());
     }
