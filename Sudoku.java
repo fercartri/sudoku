@@ -1,30 +1,18 @@
 public class Sudoku {
 
     private final int TAM = 9;
-    private int[][] board;
-
-    private int[][] vacio = {
-        {0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0}
-    };
+    private int[][] tablero;
 
     /**
      * Crea un nuevo objeto Sudoku
-     * @param board la matriz de casillas iniciales. Aquellas vacías deber tener un 0
+     * @param tablero la matriz de casillas iniciales. Aquellas vacías deber tener un 0
      * @throws IllegalArgumentException si la dimensión no es de 9x9
      */
-    public Sudoku(int[][] board) {
-        if(board.length != TAM || board[0].length != TAM)
+    public Sudoku(int[][] tablero) {
+        if(tablero.length != TAM || tablero[0].length != TAM)
             throw new IllegalArgumentException();
 
-        this.board = board;
+        this.tablero = tablero;
     }
 
     /**
@@ -32,13 +20,13 @@ public class Sudoku {
      * @return un Sudoku completado
      */
     public Sudoku solucionar(){
-        Sudoku sol = new Sudoku(board);
+        Sudoku sol = new Sudoku(tablero);
 
         for(int i = 0; i < TAM; i++){
             for(int j = 0; j < TAM; j++){
-                if(sol.board[i][j] == 0){  //Se avanza hasta el primer 0
+                if(sol.tablero[i][j] == 0){  //Se avanza hasta el primer 0
                     for(int k = 1; k <= 9; k++){
-                        sol.board[i][j] = k;
+                        sol.tablero[i][j] = k;
                         if(sol.comprobarCelda(i, j)){
                             if(sol.completado()){
                                 return sol;
@@ -52,7 +40,7 @@ public class Sudoku {
                             }
                         }
 
-                        sol.board[i][j] = 0;    //Resetear la celda
+                        sol.tablero[i][j] = 0;    //Resetear la celda
                     }
 
                     return null;    //Para que el backtracking no continue por aquí
@@ -70,7 +58,7 @@ public class Sudoku {
     public boolean completado(){
         for(int i = 0; i < TAM; i++)
             for(int j = 0; j < TAM; j++)
-                if(this.board[i][j] == 0)
+                if(this.tablero[i][j] == 0)
                     return false;
 
         return true;
@@ -83,16 +71,16 @@ public class Sudoku {
      * @return true si la celda es posible y false en caso contrario
      */
     public boolean comprobarCelda(int fil, int col){
-        int celda = this.board[fil][col];
+        int celda = this.tablero[fil][col];
 
         //Comprobar la fila
         for(int i = 0; i < TAM; i++)
-            if(i != col && this.board[fil][i] == celda)
+            if(i != col && this.tablero[fil][i] == celda)
                 return false;
 
         //Comprobar la columna
         for(int i = 0; i < TAM; i++)
-            if(i != fil && this.board[i][col] == celda)
+            if(i != fil && this.tablero[i][col] == celda)
                 return false;
 
         //Comprobar la subdivisión
@@ -101,7 +89,7 @@ public class Sudoku {
 
         for(int i = 0; i < 3; i++)
             for(int j = 0; j < 3; j++)
-                if ((i + filInicioSubdivison != fil || j + colInicioSubdivison != col) && this.board[filInicioSubdivison + i][colInicioSubdivison + j] == celda)
+                if ((i + filInicioSubdivison != fil || j + colInicioSubdivison != col) && this.tablero[filInicioSubdivison + i][colInicioSubdivison + j] == celda)
                     return false;
         
 
@@ -113,7 +101,7 @@ public class Sudoku {
         StringBuilder sb = new StringBuilder();
         for (int row = 0; row < 9; row++) {
             for (int col = 0; col < 9; col++) {
-                sb.append(board[row][col] == 0 ? "." : board[row][col]);
+                sb.append(tablero[row][col] == 0 ? "." : tablero[row][col]);
                 sb.append(" ");
                 if ((col + 1) % 3 == 0 && col < 8) {
                     sb.append("| ");
