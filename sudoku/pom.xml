@@ -42,14 +42,6 @@
     </dependency>
   </dependencies>
 
-  <!-- Tesseract OCR -->
-  <dependency>
-    <groupId>net.sourceforge.tess4j</groupId>
-    <artifactId>tess4j</artifactId>
-    <version>5.2.0</version>
-</dependency>
-
-
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
