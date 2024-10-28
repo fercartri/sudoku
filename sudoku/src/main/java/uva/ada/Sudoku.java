@@ -1,6 +1,5 @@
 package uva.ada;
 
-
 public class Sudoku {
 
     private final int TAM = 9;
