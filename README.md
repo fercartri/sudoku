@@ -77,14 +77,10 @@ Este enfoque garantiza una solución eficiente y asegura que se respete la integ
 1. **Clona este repositorio**:  
    ```bash
    git clone https://github.com/tu_usuario/solucionador-sudoku.git
-Compila y ejecuta el programa.
-Asegúrate de que tu entorno soporta Java (si usas Java) o el lenguaje en el que implementaste el programa.
+Compila y ejecuta el programa (Java).
 
 ## 🛠️ Herramientas Utilizadas
 
 - **Lenguaje:** Java (JDK 17).
 - **Algoritmo:** Backtracking para la resolución del Sudoku.
 - **Entorno de Desarrollo:** VSCode.
-
-
-¡Espero que te sea útil!
